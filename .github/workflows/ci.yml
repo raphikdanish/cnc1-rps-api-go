@@ -29,10 +29,10 @@ jobs:
         run: go mod tidy
 
       # 5. Run tests
-      - name: Run tests
+      - name: Run tests...
         run: go test ./... -v
 
-      # 6. Build application
+      # 6. Build applications
       - name: Build application
         run: go build -v ./...
 
