@@ -58,3 +58,23 @@ func Connect() {
 
 	log.Println("Connected to MySQL")
 }
+
+func CreateTable() {
+	log.Println("Creating MySQL table games")
+
+	query := `
+	CREATE TABLE IF NOT EXISTS games (
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		player_choice VARCHAR(20),
+		computer_choice VARCHAR(20),
+		result VARCHAR(20),
+		played_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	);`
+
+	_, err := DB.Exec(query)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println("Games table ready")
+}

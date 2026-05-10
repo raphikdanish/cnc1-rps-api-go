@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"rps-api-go/db"
 	"rps-api-go/game"
 	models "rps-api-go/models"
 )
@@ -33,6 +34,14 @@ func PlayHandler(w http.ResponseWriter, r *http.Request) {
 
 	computer := game.GetComputerChoice()
 	result := game.DecideWinner(req.Choice, computer)
+
+	query := `INSERT INTO games (player_choice, computer_choice, result) VALUES (?, ?, ?)`
+
+	_, err = db.DB.Exec(query, req.Choice, computer, result)
+	if err != nil {
+		http.Error(w, "Database error", http.StatusInternalServerError)
+		return
+	}
 
 	resp := models.GameResponse{
 		PlayerChoice:   req.Choice,
