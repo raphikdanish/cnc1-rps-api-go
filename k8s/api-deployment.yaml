@@ -26,9 +26,12 @@ spec:
             - name: DB_USER
               value: root
 
+            - name: DB_USER
+              value: rpsuser
+            
             - name: DB_PASSWORD
-              value: rootpassword
-
+              value: rpspassword
+            
             - name: DB_HOST
               value: mysql-service
 

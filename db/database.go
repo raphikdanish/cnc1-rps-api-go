@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
@@ -49,7 +50,17 @@ func Connect() {
 	}
 
 	// Verify connection
-	err = database.Ping()
+	for i := 0; i < 10; i++ {
+		err = database.Ping()
+
+		if err == nil {
+			break
+		}
+
+		log.Println("Waiting for MySQL...")
+		time.Sleep(5 * time.Second)
+	}
+
 	if err != nil {
 		log.Fatal(err)
 	}

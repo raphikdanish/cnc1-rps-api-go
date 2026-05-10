@@ -23,7 +23,13 @@ spec:
 
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: pass
+              value: rootpassword
 
             - name: MYSQL_DATABASE
               value: rpsdb
+              
+            - name: MYSQL_USER
+              value: rpsuser
+
+            - name: MYSQL_PASSWORD
+              value: rpspassword
