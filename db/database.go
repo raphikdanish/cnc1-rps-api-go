@@ -16,7 +16,7 @@ func Connect() {
 	// Load .env file
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println(".env file not found, using environment variables")
 	}
 
 	log.Println(".env loaded successfully")
