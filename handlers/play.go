@@ -37,10 +37,12 @@ func PlayHandler(w http.ResponseWriter, r *http.Request) {
 
 	query := `INSERT INTO games (player_choice, computer_choice, result) VALUES (?, ?, ?)`
 
-	_, err = db.DB.Exec(query, req.Choice, computer, result)
-	if err != nil {
-		http.Error(w, "Database error", http.StatusInternalServerError)
-		return
+	if db.DB != nil {
+		_, err = db.DB.Exec(query, req.Choice, computer, result)
+		if err != nil {
+			http.Error(w, "Database error", http.StatusInternalServerError)
+			return
+		}
 	}
 
 	resp := models.GameResponse{
