@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rps-api-config
+data:
+  DB_USER: "rpsuser"
+  DB_PASSWORD: "rpspassword"
+  DB_HOST: "mysql-service"
+  DB_PORT: "3306"
+  DB_NAME: "rpsdb"

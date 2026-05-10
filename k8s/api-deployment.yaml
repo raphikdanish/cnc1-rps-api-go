@@ -24,19 +24,31 @@ spec:
 
           env:
             - name: DB_USER
-              value: root
-
-            - name: DB_USER
-              value: rpsuser
+              valueFrom:
+                configMapKeyRef:
+                  name: rps-api-config
+                  key: DB_USER
             
             - name: DB_PASSWORD
-              value: rpspassword
+              valueFrom:
+                configMapKeyRef:
+                  name: rps-api-config
+                  key: DB_PASSWORD
             
             - name: DB_HOST
-              value: mysql-service
+              valueFrom:
+                configMapKeyRef:
+                  name: rps-api-config
+                  key: DB_HOST
 
             - name: DB_PORT
-              value: "3306"
+              valueFrom:
+                configMapKeyRef:
+                  name: rps-api-config
+                  key: DB_PORT
 
             - name: DB_NAME
-              value: rpsdb
+              valueFrom:
+                configMapKeyRef:
+                  name: rps-api-config
+                  key: DB_NAME

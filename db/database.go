@@ -32,6 +32,8 @@ func Connect() {
 	log.Println("DB_HOST:", dbHost)
 	log.Println("DB_PORT:", dbPort)
 	log.Println("DB_NAME:", dbName)
+	log.Println("DB_USER:", dbUser)
+	log.Println("DB_PASSWORD:", dbPassword)
 
 	// Build DSN
 	dsn := fmt.Sprintf(
