@@ -1,3 +1,13 @@
+// PlayHandler godoc
+// @Summary Play Rock Paper Scissors
+// @Description Submit player choice and get game result
+// @Tags game
+// @Accept json
+// @Produce json
+// @Param request body models.GameRequest true "Player choice"
+// @Success 200 {object} models.GameResponse
+// @Router /play [post]
+
 package handlers
 
 import (

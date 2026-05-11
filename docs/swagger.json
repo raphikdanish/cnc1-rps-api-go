@@ -1,0 +1,111 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Cloud Native Rock Paper Scissors API",
+        "title": "Rock Paper Scissors API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/play": {
+            "post": {
+                "description": "Submit player choice and get game result",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Play Rock Paper Scissors",
+                "parameters": [
+                    {
+                        "description": "Player choice",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/stats": {
+            "get": {
+                "description": "Returns total wins, losses, draws and win percentage",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "stats"
+                ],
+                "summary": "Get game statistics",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.StatsResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.GameRequest": {
+            "type": "object",
+            "properties": {
+                "choice": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameResponse": {
+            "type": "object",
+            "properties": {
+                "computer_choice": {
+                    "type": "string"
+                },
+                "player_choice": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.StatsResponse": {
+            "type": "object",
+            "properties": {
+                "draws": {
+                    "type": "integer"
+                },
+                "games_played": {
+                    "type": "integer"
+                },
+                "losses": {
+                    "type": "integer"
+                },
+                "win_percentage": {
+                    "type": "number"
+                },
+                "wins": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

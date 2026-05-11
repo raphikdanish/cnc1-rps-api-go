@@ -1,3 +1,11 @@
+// StatsHandler godoc
+// @Summary Get game statistics
+// @Description Returns total wins, losses, draws and win percentage
+// @Tags stats
+// @Produce json
+// @Success 200 {object} models.StatsResponse
+// @Router /stats [get]
+
 package handlers
 
 import (

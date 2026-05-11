@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  models.GameRequest:
+    properties:
+      choice:
+        type: string
+    type: object
+  models.GameResponse:
+    properties:
+      computer_choice:
+        type: string
+      player_choice:
+        type: string
+      result:
+        type: string
+    type: object
+  models.StatsResponse:
+    properties:
+      draws:
+        type: integer
+      games_played:
+        type: integer
+      losses:
+        type: integer
+      win_percentage:
+        type: number
+      wins:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Cloud Native Rock Paper Scissors API
+  title: Rock Paper Scissors API
+  version: "1.0"
+paths:
+  /play:
+    post:
+      consumes:
+      - application/json
+      description: Submit player choice and get game result
+      parameters:
+      - description: Player choice
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameResponse'
+      summary: Play Rock Paper Scissors
+      tags:
+      - game
+  /stats:
+    get:
+      description: Returns total wins, losses, draws and win percentage
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatsResponse'
+      summary: Get game statistics
+      tags:
+      - stats
+swagger: "2.0"
