@@ -14,13 +14,16 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	// Load .env file
+	// Load local environment file first if present, then fall back to .env.
+	_ = godotenv.Load(".env.local")
+
+	// Load default .env file if available.
 	err := godotenv.Load()
 	if err != nil {
 		log.Println(".env file not found, using environment variables")
+	} else {
+		log.Println("Loaded .env")
 	}
-
-	log.Println(".env loaded successfully")
 
 	// Read environment variables
 	dbUser := os.Getenv("DB_USER")
@@ -28,6 +31,11 @@ func Connect() {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
+
+	if dbHost == "" {
+		dbHost = "localhost"
+		log.Println("DB_HOST not set; defaulting to localhost")
+	}
 
 	log.Println("DB_HOST:", dbHost)
 	log.Println("DB_PORT:", dbPort)
